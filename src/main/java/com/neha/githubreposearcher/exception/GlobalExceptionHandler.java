@@ -42,4 +42,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleAll(Exception ex) {
         return build(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong");
     }
+
+    @ExceptionHandler(org.springframework.web.servlet.resource.NoResourceFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFound(Exception ex) {
+         return build(HttpStatus.NOT_FOUND.value(), "Resource not found");
+    }
 }
